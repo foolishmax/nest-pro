@@ -1,8 +1,8 @@
-import { Args, Mutation, Resolver, Query, Int } from '@nestjs/graphql';
-import { UserService } from './user.service';
+import { Inject } from '@nestjs/common';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UserInput } from './dto/user.input.type';
 import { UserType } from './dto/user.type';
-import { Inject } from '@nestjs/common';
+import { UserService } from './user.service';
 
 @Resolver()
 export class UserResolver {
@@ -10,12 +10,12 @@ export class UserResolver {
 
   @Mutation(() => Boolean, { description: '新增用户' })
   async create(@Args('params') params: UserInput): Promise<boolean> {
-    console.log('999');
     return await this.userService.create(params);
   }
 
   @Query(() => UserType, { description: '根据id获取用户' })
   async find(@Args('id', { type: () => Int }) id: number): Promise<UserType> {
+    console.log('find api called');
     return await this.userService.find(id);
   }
 

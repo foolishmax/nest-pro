@@ -1,6 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
-import { UserService } from './modules/user/user.service';
-import { User } from './modules/user/models/user.entity';
+import { Controller } from '@nestjs/common';
 
 @Controller()
 export class AppController {
