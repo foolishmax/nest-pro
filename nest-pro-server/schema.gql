@@ -1,0 +1,31 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserType {
+  id: Int!
+
+  """名称"""
+  name: String!
+}
+
+type Query {
+  """根据id获取用户"""
+  find(id: Int!): UserType!
+}
+
+type Mutation {
+  """新增用户"""
+  create(params: UserInput!): Boolean!
+
+  """更新用户"""
+  update(id: String!, params: UserInput!): Boolean!
+
+  """删除用户"""
+  del(id: String!): Boolean!
+}
+
+input UserInput {
+  """名称"""
+  name: String
+}
