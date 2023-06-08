@@ -15,6 +15,7 @@ export class UserResolver {
 
   @Query(() => UserType, { description: '根据id获取用户' })
   async find(@Args('id', { type: () => Int }) id: number): Promise<UserType> {
+    console.log('create');
     return await this.userService.find(id);
   }
 

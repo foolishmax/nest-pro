@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Result {
+  code: Int!
+  message: String
+  data: String
+}
+
 type OSSType {
   """过期时间"""
   expire: String!
@@ -46,6 +52,12 @@ type Mutation {
 
   """删除用户"""
   del(id: String!): Boolean!
+
+  """发送验证码"""
+  sendCodeMsg(phone: String!): Result!
+
+  """登陆"""
+  login(phone: String!, code: String!): Result!
 }
 
 input UserInput {

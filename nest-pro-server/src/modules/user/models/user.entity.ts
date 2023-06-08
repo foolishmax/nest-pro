@@ -15,4 +15,22 @@ export class User {
   })
   @IsNotEmpty()
   name: string;
+
+  @Column({
+    comment: '手机号',
+    nullable: true,
+  })
+  phone: string;
+
+  @Column({
+    comment: '验证码',
+    nullable: true,
+  })
+  code: string;
+
+  @Column({
+    comment: '验证码创建时间',
+    nullable: true,
+  })
+  codeCreateTimeAt: Date;
 }
