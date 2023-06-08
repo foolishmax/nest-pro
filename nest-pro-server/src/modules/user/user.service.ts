@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './models/user.entity';
 import { DeepPartial, Repository } from 'typeorm';
+import { User } from './models/user.entity';
 
 @Injectable()
 export class UserService {
@@ -25,7 +25,7 @@ export class UserService {
     return false;
   }
 
-  async update(id: string, entity: DeepPartial<User>): Promise<boolean> {
+  async update(id: number, entity: DeepPartial<User>): Promise<boolean> {
     const res = await this.UserRepository.update(id, entity);
     if (res.affected > 0) {
       return true;

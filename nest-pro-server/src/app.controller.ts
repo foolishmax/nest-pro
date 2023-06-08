@@ -5,7 +5,6 @@ export class AppController {
   // constructor(private readonly userService: UserService) {}
   // @Get('/create')
   // async create(): Promise<boolean> {
-  //   console.log('/create');
   //   return await this.userService.create({
   //     name: 'lbs',
   //   });

@@ -15,13 +15,12 @@ export class UserResolver {
 
   @Query(() => UserType, { description: '根据id获取用户' })
   async find(@Args('id', { type: () => Int }) id: number): Promise<UserType> {
-    console.log('find api called');
     return await this.userService.find(id);
   }
 
   @Mutation(() => Boolean, { description: '更新用户' })
   async update(
-    @Args('id') id: string,
+    @Args('id', { type: () => Int }) id: number,
     @Args('params') params: UserInput,
   ): Promise<boolean> {
     return await this.userService.update(id, params);
