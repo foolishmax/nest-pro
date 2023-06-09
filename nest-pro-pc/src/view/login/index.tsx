@@ -1,3 +1,4 @@
+import { AUTH_TOKEN } from '@/constants';
 import { LockOutlined, MobileOutlined } from '@ant-design/icons';
 import {
   LoginFormPage,
@@ -8,8 +9,7 @@ import {
 import { useMutation } from '@apollo/client';
 import { useTitle } from 'ahooks';
 import { Tabs, message } from 'antd';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { AUTH_TOKEN } from '../../constants';
+import { useNavigate } from 'react-router-dom';
 import { LOGIN, SEND_CODE_MSG } from '../../graphql/auth';
 import styles from './index.module.less';
 
@@ -22,18 +22,15 @@ interface IValue {
 const Login = () => {
   const [sendCodeMsg] = useMutation(SEND_CODE_MSG);
   const [login] = useMutation(LOGIN);
-  const [params] = useSearchParams();
-  // const { store } = useUserContext();
   const navigate = useNavigate();
   useTitle('登录');
 
-  const loginHandler = async (values: IValue) => {
+  const loginHandler = async (formValus: IValue) => {
     const res = await login({
-      variables: values,
+      variables: formValus,
     });
     if (res.data.login.code === 200) {
-      // store.refetchHandler();
-      if (values.autoLogin) {
+      if (formValus.autoLogin) {
         sessionStorage.setItem(AUTH_TOKEN, '');
         localStorage.setItem(AUTH_TOKEN, res.data.login.data);
       } else {
@@ -41,7 +38,7 @@ const Login = () => {
         sessionStorage.setItem(AUTH_TOKEN, res.data.login.data);
       }
       message.success(res.data.login.message);
-      navigate(params.get('orgUrl') || '/');
+      navigate('/home');
       return;
     }
     message.error(res.data.login.message);

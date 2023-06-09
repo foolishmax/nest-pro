@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class UserType {
@@ -6,4 +6,6 @@ export class UserType {
   id: number;
   @Field({ description: '名称' })
   name?: string;
+  @Field({ description: '手机号' })
+  phone?: string;
 }

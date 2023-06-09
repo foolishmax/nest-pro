@@ -12,4 +12,12 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': 'warn',
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: ['@', './src/*'],
+        extensions: ['.ts', '.tsx'],
+      },
+    },
+  },
 };

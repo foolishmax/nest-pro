@@ -6,6 +6,7 @@ type Result {
   code: Int!
   message: String
   data: String
+  page: String
 }
 
 type OSSType {
@@ -33,11 +34,14 @@ type UserType {
 
   """名称"""
   name: String!
+
+  """手机号"""
+  phone: String!
 }
 
 type Query {
-  """根据id获取用户"""
-  find(id: Int!): UserType!
+  """根据id获取用户信息"""
+  getUserInfo(id: Int!): UserType!
 
   """获取oss相关信息"""
   getOSSInfo: OSSType!

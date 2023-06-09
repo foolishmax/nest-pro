@@ -1,9 +1,9 @@
 import { ApolloProvider } from '@apollo/client';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { client } from './apollo';
 import './index.css';
 import { ROUTE_COMPONENTS, routes } from './router/index.tsx';
-import { client } from './utils/apollo.ts';
 import { Login } from './view/index.ts';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

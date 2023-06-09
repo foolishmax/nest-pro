@@ -13,10 +13,11 @@ export class UserResolver {
     return await this.userService.create(params);
   }
 
-  @Query(() => UserType, { description: '根据id获取用户' })
-  async find(@Args('id', { type: () => Int }) id: number): Promise<UserType> {
-    console.log('create');
-    return await this.userService.find(id);
+  @Query(() => UserType, { description: '根据id获取用户信息' })
+  async getUserInfo(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<UserType> {
+    return await this.userService.getUserInfo(id);
   }
 
   @Mutation(() => Boolean, { description: '更新用户' })

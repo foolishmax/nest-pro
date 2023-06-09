@@ -33,7 +33,7 @@ export class UserService {
     return false;
   }
 
-  async find(id: number): Promise<User> {
+  async getUserInfo(id: number): Promise<User> {
     const res = await this.UserRepository.findOne({
       where: {
         id,

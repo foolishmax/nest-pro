@@ -7,6 +7,7 @@ import {
 } from '@/common/constants';
 import { Result } from '@/common/dto';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { JwtService } from '@nestjs/jwt';
 import * as dayjs from 'dayjs';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
@@ -16,6 +17,7 @@ export class AuthResolver {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UserService,
+    private readonly jwtService: JwtService,
   ) {}
 
   @Mutation(() => Result, { description: '发送验证码' })
@@ -45,7 +47,9 @@ export class AuthResolver {
       };
     }
     if (user.code === code) {
-      const token = '123123';
+      const token = this.jwtService.sign({
+        id: user.id,
+      });
       return {
         code: SUCCESS,
         message: '登录成功',
